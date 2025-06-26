@@ -1,0 +1,27 @@
+# === IntelliJ IDEA ===
+.idea/
+/*.iml
+*.iws
+
+# === OS-specific ===
+.DS_Store
+Thumbs.db
+
+# === Logs & runtime ===
+*.log
+*.tmp
+*.swp
+
+# === Environment ===
+.env
+.env.local
+
+# === Git ===
+*.orig
+
+# === Docker ===
+/docker-compose.override.yml
+/docker-compose.local.yml
+
+# === VS Code (pokud používáš občas) ===
+.vscode/
