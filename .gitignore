@@ -25,3 +25,7 @@ Thumbs.db
 
 # === VS Code (pokud používáš občas) ===
 .vscode/
+
+#------User rules----------------------------------------
+*.ini
+**/idea/
