@@ -1,0 +1,35 @@
+#!/bin/bash
+
+source "$SCRIPT_DIR/scripts/libs/colors.sh"
+
+cmd::help() {
+    log "${YELLOW}User executed help command${RESET}"
+    echo -e "${YELLOW}Usage: $0 <environment> <command> [options]${RESET}"
+    echo -e "  environment: Specify the environment to manage (e.g., development, production)"
+    echo -e ""
+    echo -e "Commands:"
+    echo -e "  start [--build]        Start the specified environment, optionally rebuild images"
+    echo -e "  stop [--volumes]       Stop the running environment, optionally remove volumes"
+    echo -e "  restart                Restart the environment"
+    echo -e "  status                 Show the status of Docker containers"
+    echo -e "  logs                   Show logs from the environment"
+    echo -e "  clean                  Clean old logs"
+    echo -e "  help                   Show this help message"
+    echo -e "  version                Show the script version"
+    echo -e ""
+    echo -e "Options:"
+    echo -e "  --nolog                Disable log output"
+    echo -e "  --volumes              Remove volumes when stopping the environment"
+    echo -e "  --build                Rebuild the Docker images when starting"
+    echo -e "  --tail <N>             Show the last N lines of logs"
+    echo -e "  --volumes              Remove volumes when stopping the environment"
+    echo -e ""
+    echo -e "Examples:"
+    echo -e "  $0 development start --build    # Start development with rebuild"
+    echo -e "  $0 production stop --volumes    # Stop production and remove volumes"
+    echo -e "  $0 development logs --tail 50   # Show last 50 log lines"
+    echo -e "  $0 development clean            # Clean old logs"
+    echo -e "  $0 --help                      # Show help message"
+    echo -e "  $0 --version                   # Show script version"
+    exit 0
+}
