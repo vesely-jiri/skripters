@@ -29,22 +29,6 @@ services:
     networks:
       - internal
 
-  backend_core:
-    build:
-      context: ./services/backend-core
-      dockerfile: Dockerfile
-    environment:
-      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
-      RABBITMQ_HOST: ${RABBITMQ_HOST:-rabbitmq}
-      RABBITMQ_PORT: ${RABBITMQ_PORT:-5672}
-      RABBITMQ_USER: ${RABBITMQ_USER:-admin}
-      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
-    depends_on:
-      - db
-      - rabbitmq
-    networks:
-      - internal
-
   backend_auth:
     build:
       context: ./services/backend-auth
