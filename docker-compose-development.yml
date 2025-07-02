@@ -1,0 +1,19 @@
+services:
+
+  #-------- frontend services---------------------------------------------
+  frontend:
+    build:
+      args:
+        NODE_ENV: development
+
+  #-------- backend services---------------------------------------------
+  backend_api_gateway:
+    env_file:
+      - .env.development
+
+  backend_core:
+    env_file:
+      - .env.development
+  backend_auth:
+    env_file:
+      - .env.development
