@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-source "$SCRIPT_DIR/scripts/functions/colors.sh"
+source "$SCRIPT_DIR/scripts/utilsg/colors.sh"
 
 LOG_FILE="$SCRIPT_DIR/scripts/app.log"
 DEBUG=${DEBUG:-false}
