@@ -1,17 +1,19 @@
 #!/bin/bash
 
 DEBUG=${DEBUG:-false}
-SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "$SCRIPT_DIR/scripts/utils/log.sh"
-source "$SCRIPT_DIR/scripts/functions/docker.sh"
-source "$SCRIPT_DIR/scripts/commands/help.sh"
-source "$SCRIPT_DIR/scripts/commands/version.sh"
-source "$SCRIPT_DIR/scripts/commands/init.sh"
-source "$SCRIPT_DIR/scripts/commands/up.sh"
+source "${SCRIPT_DIR}/scripts/utils/log.sh"
+source "${SCRIPT_DIR}/scripts/functions/docker.sh"
+source "${SCRIPT_DIR}/scripts/commands/help.sh"
+source "${SCRIPT_DIR}/scripts/commands/version.sh"
+source "${SCRIPT_DIR}/scripts/commands/init.sh"
+source "${SCRIPT_DIR}/scripts/commands/up.sh"
+source "${SCRIPT_DIR}/scripts/commands/down.sh"
 
 if [[ $# -eq 0 ]]; then
-    log::fatal "❌ No arguments provided"
+    log::error "❌ No arguments provided"
+    cmd::help
 fi
 
 COMMAND="$1"
@@ -43,7 +45,7 @@ for arg in "$@"; do
 done
 
 case "$COMMAND" in
-    init|up|down|restart|logs|status|migrate|reset-db|version)
+    init|up|down|restart|logs|status|migrate|reset-db|version|help)
         cmd::"$COMMAND" "$ENVIRONMENT"
         ;;
 esac
