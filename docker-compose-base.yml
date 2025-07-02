@@ -6,14 +6,14 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "80:5173"
     networks:
       - internal
 
 #-------- backend services---------------------------------------------
-  backend_api_gateway:
+  skripters_api_gateway:
     build:
-      context: ./services/backend-api-gateway
+      context: ./services/skripters-api-gateway
       dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
@@ -29,9 +29,9 @@ services:
     networks:
       - internal
 
-  backend_auth:
+  skripters_auth:
     build:
-      context: ./services/backend-auth
+      context: ./services/skripters-auth
       dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}

@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-source "$SCRIPT_DIR/../utils/log.sh"
+source "${SCRIPT_DIR}/scripts/utils/log.sh"
 
 docker::check() {
     docker &> /dev/null || log::fatal "❌ Docker is not installed or not in PATH!"
@@ -58,3 +57,5 @@ docker::restart() {
     docker::down "$env"
     docker::up "$env"
 }
+
+log::debug "✅ Docker functions loaded"

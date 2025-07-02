@@ -1,10 +1,12 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-source "${SCRIPT_DIR}/../utils/log.sh"
+source "${SCRIPT_DIR}/scripts/utils/colors.sh"
 
-LOG_FILE="$SCRIPT_DIR/../../logs/scripts.log"
-DEBUG=${DEBUG:-false}
+LOG_DIR="${SCRIPT_DIR}/logs/"
+LOG_FILE="${LOG_DIR}/manager.log"
+
+mkdir -p "${LOG_DIR}"
+touch "${LOG_FILE}"
 
 log::__base() {
     local color="$1"
@@ -13,11 +15,16 @@ log::__base() {
     local msg="$*"
     local timestamp
     timestamp="$(date '+%H:%M:%S')"
+
     local output="${color}[${timestamp} ${level}]${RESET} ${msg}"
+    local no_color_output="[${timestamp} ${level}] ${msg}"
+
     if [[ "$level" == "ERROR" || "$level" == "FATAL" ]]; then
-        echo -e "$output" | tee -a "$LOG_FILE" >&2
+        echo -e "$output" >&2
+        echo "$no_color_output" >> "$LOG_FILE"
     else
-        echo -e "$output" | tee -a "$LOG_FILE"
+        echo -e "$output"
+        echo "$no_color_output" >> "$LOG_FILE"
     fi
 }
 
@@ -26,7 +33,7 @@ log::success() { log::__base "$GREEN" "OK" "$*"; }
 log::warn()    { log::__base "$YELLOW" "WARN" "$*"; }
 log::error()   { log::__base "$RED" "ERROR" "$*"; }
 log::debug()   {
-    if [[ "$DEBUG" == true ]]; then
+    if [[ "${DEBUG}" == true ]]; then
         log::__base "$MAGENTA" "DEBUG" "$*"
     fi
 }
@@ -43,3 +50,5 @@ log::clean_logs() {
         log::warn "'$LOG_FILE' does not exist. No action needed."
     fi
 }
+
+log::debug "✅ Log functions loaded"

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-source "${SCRIPT_DIR}/../utils/log.sh"
-source "${SCRIPT_DIR}/../functions/docker.sh"
+source "${SCRIPT_DIR}/scripts/utils/log.sh"
+source "${SCRIPT_DIR}/scripts/functions/docker.sh"
 
 cmd::up() {
     local env=$1
@@ -19,3 +18,5 @@ cmd::up() {
     fi
     log::success "✅ Application started"
 }
+
+log::debug "✅ Commands loaded"

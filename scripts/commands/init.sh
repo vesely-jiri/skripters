@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source "${SCRIPT_DIR}/../utils/log.sh"
+source "${SCRIPT_DIR}/scripts/utils/log.sh"
+source "${SCRIPT_DIR}/scripts/functions/docker.sh"
+source "${SCRIPT_DIR}/scripts/functions/env.sh"
 
 cmd::init() {
 
@@ -17,3 +19,5 @@ cmd::init() {
     log::success "Environment ${env} initialized"
 
 }
+
+log::debug "✅ Init command loaded"
