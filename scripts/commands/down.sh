@@ -1,8 +1,8 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-source "${SCRIPT_DIR}/scripts/utils/log.sh"
-source "${SCRIPT_DIR}/scripts/functions/docker.sh"
+source "${SCRIPT_DIR}/../utils/log.sh"
+source "${SCRIPT_DIR}/../functions/docker.sh"
 
 cmd::down() {
     local env=$1

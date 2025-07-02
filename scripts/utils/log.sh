@@ -1,9 +1,9 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-source "$SCRIPT_DIR/scripts/utils/colors.sh"
+source "${SCRIPT_DIR}/../utils/log.sh"
 
-LOG_FILE="$SCRIPT_DIR/scripts/app.log"
+LOG_FILE="$SCRIPT_DIR/../../logs/scripts.log"
 DEBUG=${DEBUG:-false}
 
 log::__base() {

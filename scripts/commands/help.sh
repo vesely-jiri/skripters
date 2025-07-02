@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$SCRIPT_DIR/scripts/utils/colors.sh"
+source "$SCRIPT_DIR/../utils/colors.sh"
 
 cmd::help() {
     log "${YELLOW}User executed help command${RESET}"

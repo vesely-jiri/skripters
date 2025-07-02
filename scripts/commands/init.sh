@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$SCRIPT_DIR/scripts/utils/log.sh"
+source "${SCRIPT_DIR}/../utils/log.sh"
 
 cmd::init() {
 
