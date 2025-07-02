@@ -3,9 +3,9 @@
 DEBUG=${DEBUG:-false}
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-source "$SCRIPT_DIR/scripts/functions/log.sh"
+source "$SCRIPT_DIR/scripts/utils/log.sh"
 source "$SCRIPT_DIR/scripts/functions/docker.sh"
-source "$SCRIPT_DIR/scripts/functions/help.sh"
+source "$SCRIPT_DIR/scripts/commands/help.sh"
 source "$SCRIPT_DIR/scripts/commands/version.sh"
 source "$SCRIPT_DIR/scripts/commands/init.sh"
 source "$SCRIPT_DIR/scripts/commands/up.sh"
