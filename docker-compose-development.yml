@@ -11,7 +11,7 @@ services:
       - /app/node_modules
 
   #-------- backend services---------------------------------------------
-  skripters_api_gateway:
+  skripters-api-gateway:
     build:
       context: ./services/skripters-api-gateway
       dockerfile: Dockerfile.dev
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./services/skripters-api-gateway:/app
 
-  skripters_auth:
+  skripters-auth:
     build:
       context: ./services/skripters-auth
       dockerfile: Dockerfile.dev

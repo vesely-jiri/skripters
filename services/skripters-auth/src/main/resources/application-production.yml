@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${AUTH_POSTGRES_HOST}:${AUTH_POSTGRES_PORT}/${AUTH_POSTGRES_DB}
+    driver-class-name: org.postgresql.Driver
+    username: ${AUTH_POSTGRES_USER}
+    password: ${AUTH_POSTGRES_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false

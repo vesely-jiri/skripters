@@ -11,36 +11,28 @@ services:
       - internal
 
 #-------- backend services---------------------------------------------
-  skripters_api_gateway:
+  skripters-api-gateway:
     build:
       context: ./services/skripters-api-gateway
       dockerfile: Dockerfile
     environment:
-      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
-      RABBITMQ_HOST: ${RABBITMQ_HOST}
-      RABBITMQ_PORT: ${RABBITMQ_PORT}
-      RABBITMQ_USER: ${RABBITMQ_USER}
-      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - skripters-auth
       - rabbitmq
     networks:
       - internal
 
-  skripters_auth:
+  skripters-auth:
     build:
       context: ./services/skripters-auth
       dockerfile: Dockerfile
     environment:
-      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
-      RABBITMQ_HOST: ${RABBITMQ_HOST}
-      RABBITMQ_PORT: ${RABBITMQ_PORT}
-      RABBITMQ_USER: ${RABBITMQ_USER}
-      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
     depends_on:
-      - db
+      - db-auth
       - rabbitmq
     networks:
       - internal
@@ -58,22 +50,21 @@ services:
       - internal
 
 #--------databases---------------------------------------------
-  db:
+  db-auth:
     image: postgres
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${AUTH_POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${AUTH_POSTGRES_DB:-postgres}
     ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+      - ${AUTH_POSTGRES_PORT}:${AUTH_POSTGRES_PORT}
     volumes:
-      - db-data:/var/lib/postgresql/data
-
+      - db-auth-data:/var/lib/postgresql/data
 
 #--------other--------------------------------------------------
 
 volumes:
-  db-data:
+  db-auth-data:
 
 networks:
   internal:

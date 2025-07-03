@@ -44,10 +44,10 @@ env::generate() {
     cat > "$env_file" << EOF
 # .env file for environment: $env
 
-POSTGRES_DB=postgres
-POSTGRES_PORT=5432
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=$db_password
+AUTH_POSTGRES_DB=postgres
+AUTH_POSTGRES_PORT=5432
+AUTH_POSTGRES_USER=postgres
+AUTH_POSTGRES_PASSWORD=$db_password
 
 RABBITMQ_HOST=rabbitmq
 RABBITMQ_PORT=5672
