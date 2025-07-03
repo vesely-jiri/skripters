@@ -6,11 +6,29 @@ services:
       args:
         NODE_ENV: development
 
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
   #-------- backend services---------------------------------------------
   skripters_api_gateway:
+    build:
+      context: ./services/skripters-api-gateway
+      dockerfile: Dockerfile.dev
+    environment:
+      SPRING_PROFILES_ACTIVE: development
     env_file:
       - .env.development
+    volumes:
+      - ./services/skripters-api-gateway:/app
 
   skripters_auth:
+    build:
+      context: ./services/skripters-auth
+      dockerfile: Dockerfile.dev
+    environment:
+      SPRING_PROFILES_ACTIVE: development
     env_file:
       - .env.development
+    volumes:
+      - ./services/skripters-auth:/app

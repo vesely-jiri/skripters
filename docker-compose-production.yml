@@ -8,9 +8,13 @@ services:
 
   #-------- backend services---------------------------------------------
   skripters_api_gateway:
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
     env_file:
       - .env.production
 
   skripters_auth:
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
     env_file:
       - .env.production
