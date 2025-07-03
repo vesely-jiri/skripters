@@ -1,4 +1,4 @@
-package sk.skripters;
+package sk.skripters.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
