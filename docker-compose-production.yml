@@ -8,12 +8,16 @@ services:
 
   #-------- backend services---------------------------------------------
   skripters-api-gateway:
+    build:
+      target: production
     environment:
       - SPRING_PROFILES_ACTIVE=production
     env_file:
       - .env.production
 
   skripters-auth:
+    build:
+      target: production
     environment:
       - SPRING_PROFILES_ACTIVE=production
     env_file:

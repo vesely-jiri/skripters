@@ -1,6 +1,5 @@
 services:
-
-  #-------- frontend services---------------------------------------------
+#-------- frontend services---------------------------------------------
   frontend:
     build:
       args:
@@ -10,11 +9,10 @@ services:
       - ./frontend:/app
       - /app/node_modules
 
-  #-------- backend services---------------------------------------------
+#-------- backend services---------------------------------------------
   skripters-api-gateway:
     build:
-      context: ./services/skripters-api-gateway
-      dockerfile: Dockerfile.dev
+      target: development
     environment:
       SPRING_PROFILES_ACTIVE: development
     env_file:
@@ -24,8 +22,7 @@ services:
 
   skripters-auth:
     build:
-      context: ./services/skripters-auth
-      dockerfile: Dockerfile.dev
+      target: development
     environment:
       SPRING_PROFILES_ACTIVE: development
     env_file:
