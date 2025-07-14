@@ -1,39 +1,12 @@
 services:
 
-#-------- frontend services---------------------------------------------
+#-------- frontend service---------------------------------------------
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "80:5173"
-    networks:
-      - internal
-
-#-------- backend services---------------------------------------------
-  skripters-api-gateway:
-    build:
-      context: ./services/skripters-api-gateway
-      dockerfile: Dockerfile
-    environment:
-      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
-    ports:
-      - "8080:8080"
-    depends_on:
-      - skripters-auth
-      - rabbitmq
-    networks:
-      - internal
-
-  skripters-auth:
-    build:
-      context: ./services/skripters-auth
-      dockerfile: Dockerfile
-    environment:
-      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
-    depends_on:
-      - db-auth
-      - rabbitmq
     networks:
       - internal
 
@@ -48,20 +21,6 @@ services:
       - "15672:15672"
     networks:
       - internal
-
-#--------databases---------------------------------------------
-  db-auth:
-    image: postgres
-    environment:
-      POSTGRES_USER: ${AUTH_POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${AUTH_POSTGRES_DB:-postgres}
-    ports:
-      - ${AUTH_POSTGRES_PORT}:${AUTH_POSTGRES_PORT}
-    volumes:
-      - db-auth-data:/var/lib/postgresql/data
-
-#--------other--------------------------------------------------
 
 volumes:
   db-auth-data:

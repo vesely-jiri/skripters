@@ -1,0 +1,11 @@
+services:
+  db-auth:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${AUTH_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${AUTH_POSTGRES_DB}
+    ports:
+      - ${AUTH_POSTGRES_PORT}:${AUTH_POSTGRES_PORT}
+    volumes:
+      - db-auth-data:/var/lib/postgresql/data

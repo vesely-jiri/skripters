@@ -8,12 +8,29 @@ docker::check() {
     docker info &> /dev/null || log::fatal "❌ Docker is not running. Please start Docker first!"
 }
 
+docker::get_compose_command() {
+    local env=$1
+    local base="${SCRIPT_DIR}/docker-compose"
+    local base_file="${base}-base.yml"
+    local database_file="${base}-databases.yml"
+    local backend_services_file="${base}-backend-services.yml"
+    local profile_file="${base}-${env}.yml"
+
+    printf "%q " docker compose \
+        -f "${base_file}" \
+        -f "${database_file}" \
+        -f "${backend_services_file}" \
+        -f "${profile_file}" \
+        --env-file "${SCRIPT_DIR}/.env.${env}"
+}
+
 docker::init() {
     local env=$1
     docker::check
     docker::_validate_env "$env"
-    local compose_file="${SCRIPT_DIR}/docker-compose-${env}.yml"
-    local cmd=(docker compose -f "${SCRIPT_DIR}/docker-compose-base.yml" -f "$compose_file" --env-file "${SCRIPT_DIR}/.env.${env}" build)
+
+    eval "cmd=($(docker::get_compose_command "$env"))"
+    cmd+=("build")
 
     if ! "${cmd[@]}"; then
         log::fatal "❌ Failed to initialize environment: ${env}"
@@ -31,20 +48,26 @@ docker::up() {
     local env=$1
     docker::check
     docker::_validate_env "$env"
-    local compose_file="${SCRIPT_DIR}/docker-compose-${env}.yml"
+    
+    local cmd
+    eval "cmd=($(docker::get_compose_command "$env"))"
+    cmd+=("up" "-d")
 
-    if ! docker compose -f "${SCRIPT_DIR}/docker-compose-base.yml" -f "$compose_file" --env-file "${SCRIPT_DIR}/.env.${env}" up -d; then
+    if ! "${cmd[@]}"; then
         log::fatal "❌ Failed to start environment: ${env}"
     fi
 }
 
 docker::down() {
-    local env=$1
+    local env=$1; shift
     docker::check
     docker::_validate_env "$env"
-    local compose_file="${SCRIPT_DIR}/docker-compose-${env}.yml"
 
-    if ! docker compose -f "${SCRIPT_DIR}/docker-compose-base.yml" -f "$compose_file" --env-file "${SCRIPT_DIR}/.env.${env}" down; then
+    eval "cmd=($(docker::get_compose_command "$env"))"
+    cmd+=("down")
+    cmd+=("$@")
+
+    if ! "${cmd[@]}"; then
         log::fatal "❌ Failed to stop environment: ${env}"
     fi
 }

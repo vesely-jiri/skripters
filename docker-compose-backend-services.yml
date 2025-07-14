@@ -1,0 +1,31 @@
+services:
+
+#-------- backend services---------------------------------------------
+
+  skripters-api-gateway:
+    build:
+      context: ./services/skripters-api-gateway
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - skripters-auth
+      - rabbitmq
+    networks:
+      - internal
+
+  skripters-auth:
+    build:
+      context: ./services/skripters-auth
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db-auth
+      - rabbitmq
+    networks:
+      - internal

@@ -46,6 +46,6 @@ done
 
 case "$COMMAND" in
     init|up|down|restart|logs|status|migrate|reset-db|version|help)
-        cmd::"$COMMAND" "$ENVIRONMENT"
+        cmd::"$COMMAND" "$ENVIRONMENT" "$@"
         ;;
 esac
