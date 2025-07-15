@@ -7,19 +7,30 @@ RUN npm install
 
 COPY . .
 
-ARG NODE_ENV=production
-ENV NODE_ENV=$NODE_ENV
-
 RUN npm run build
 
 
-FROM node:22-alpine
+FROM node:22-alpine AS development
 
 WORKDIR /app
 
-COPY --from=build /app /app
+COPY package*.json ./
+RUN npm install
 
-ARG NODE_ENV=production
-ENV NODE_ENV=$NODE_ENV
+COPY . .
 
-CMD ["sh", "-c", "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start; else npm run dev; fi"]
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
+
+FROM nginx:alpine AS production
+
+WORKDIR /app
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+COPY nginx.production.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
