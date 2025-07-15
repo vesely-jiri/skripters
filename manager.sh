@@ -8,8 +8,8 @@ source "${SCRIPT_DIR}/scripts/functions/docker.sh"
 source "${SCRIPT_DIR}/scripts/commands/help.sh"
 source "${SCRIPT_DIR}/scripts/commands/version.sh"
 source "${SCRIPT_DIR}/scripts/commands/init.sh"
-source "${SCRIPT_DIR}/scripts/commands/up.sh"
-source "${SCRIPT_DIR}/scripts/commands/down.sh"
+source "${SCRIPT_DIR}/scripts/commands/start.sh"
+source "${SCRIPT_DIR}/scripts/commands/stop.sh"
 
 if [[ $# -eq 0 ]]; then
     log::error "❌ No arguments provided"
@@ -20,7 +20,7 @@ COMMAND="$1"
 shift
 
 case "$COMMAND" in
-    init|up|down|restart|logs|status|migrate|reset-db|help|version)
+    init|start|stop|restart|logs|status|migrate|reset-db|help|version)
         ;;
     *)
         log::fatal "Unknown command: $COMMAND"
@@ -38,6 +38,8 @@ for arg in "$@"; do
             cmd::help
             exit 0
             ;;
+        --volumes|--build)
+            ;;
         *)
             log::fatal "Unknown argument: $arg"
             ;;
@@ -45,7 +47,7 @@ for arg in "$@"; do
 done
 
 case "$COMMAND" in
-    init|up|down|restart|logs|status|migrate|reset-db|version|help)
+    init|start|stop|restart|logs|status|migrate|reset-db|version|help)
         cmd::"$COMMAND" "$ENVIRONMENT" "$@"
         ;;
 esac
