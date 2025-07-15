@@ -5,6 +5,9 @@ services:
     build:
       args:
         NODE_ENV: production
+      target: production
+    ports:
+      - "80:80"
 
   #-------- backend services---------------------------------------------
   skripters-api-gateway:
