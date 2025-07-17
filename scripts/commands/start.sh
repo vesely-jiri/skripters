@@ -19,4 +19,4 @@ cmd::start() {
     log::success "✅ Application started"
 }
 
-log::debug "✅ Commands loaded"
+log::debug "✅ Start command loaded"

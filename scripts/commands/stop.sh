@@ -15,4 +15,4 @@ cmd::stop() {
     log::success "Environment ${env} stopped"
 }
 
-log::debug "✅ Down command loaded"
+log::debug "✅ Stop command loaded"
