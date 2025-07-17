@@ -1,0 +1,41 @@
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50px;               /* startovní šířka, jen ikona */
+  height: 50px;
+  background-color: #00a0eb;
+  border-radius: 0 25px 25px 0;  /* kulaté rohy vpravo */
+  overflow: hidden;
+  text-decoration: none;
+  transition: width 0.3s ease;
+}
+
+.button:hover {
+  width: 150px;              /* vysune se víc doprava */
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 13px;            /* centrování ikony v 50px bloku */
+  transition: opacity 0.3s ease;
+}
+
+.label {
+  white-space: nowrap;
+  opacity: 0;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: opacity 0.3s ease 0.1s; /* drobné zpoždění */
+}
+
+.button:hover .icon {
+  opacity: 0;                 /* ikona pomalu zmizí */
+}
+
+.button:hover .label {
+  opacity: 1;                 /* text se objeví */
+}
