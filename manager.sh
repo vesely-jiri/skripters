@@ -10,6 +10,7 @@ source "${SCRIPT_DIR}/scripts/commands/version.sh"
 source "${SCRIPT_DIR}/scripts/commands/init.sh"
 source "${SCRIPT_DIR}/scripts/commands/start.sh"
 source "${SCRIPT_DIR}/scripts/commands/stop.sh"
+source "${SCRIPT_DIR}/scripts/commands/restart.sh"
 
 if [[ $# -eq 0 ]]; then
     log::error "❌ No arguments provided"
@@ -47,7 +48,7 @@ for arg in "$@"; do
 done
 
 case "$COMMAND" in
-    init|start|stop|restart|logs|status|migrate|reset-db|version|help)
+    init|start|stop|restart|logs|status|migrate|reset-db|help|version)
         cmd::"$COMMAND" "$ENVIRONMENT" "$@"
         ;;
 esac
