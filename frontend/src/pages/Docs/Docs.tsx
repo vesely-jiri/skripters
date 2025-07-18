@@ -1,4 +1,5 @@
 import TypeFilterMenu from './components/TypeFilter/TypeFilterMenu'
+import Logo from '../../components/logo/Logo'
 
 import styles from './Docs.module.css'
 
@@ -9,8 +10,8 @@ const Docs = () => {
                 <TypeFilterMenu />
             </div>
 
-            <div>
-                <h1>Docs</h1>
+            <div className={styles.logo}>
+                <Logo subtitle='Docs'/>
             </div>
         </>
     )
