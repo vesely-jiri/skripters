@@ -3,24 +3,23 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 50px;               /* startovní šířka, jen ikona */
+  width: 50px;
   height: 50px;
-  background-color: #00a0eb;
-  border-radius: 0 25px 25px 0;  /* kulaté rohy vpravo */
+  border-radius: 0 15px 15px 0;
   overflow: hidden;
   text-decoration: none;
   transition: width 0.3s ease;
 }
 
 .button:hover {
-  width: 150px;              /* vysune se víc doprava */
+  width: 150px;
 }
 
 .icon {
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  margin: 0 13px;            /* centrování ikony v 50px bloku */
+  margin: 0 13px;
   transition: opacity 0.3s ease;
 }
 
@@ -29,13 +28,13 @@
   opacity: 0;
   font-size: 1rem;
   color: #ffffff;
-  transition: opacity 0.3s ease 0.1s; /* drobné zpoždění */
+  transition: opacity 0.3s ease 0.1s;
 }
 
 .button:hover .icon {
-  opacity: 0;                 /* ikona pomalu zmizí */
+  opacity: 0;
 }
 
 .button:hover .label {
-  opacity: 1;                 /* text se objeví */
+  opacity: 1;
 }
