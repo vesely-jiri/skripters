@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.navigationMenu {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+
+.actionBar {
+  position: absolute;
+  top: 0;
+  right: 0; 
+}
+
+.pageContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
