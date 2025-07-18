@@ -1,6 +1,4 @@
 import styles from './Home.module.css'
-import ActionBar from '../../components/actionBar/ActionBar.tsx'
-import NavigationMenu from '../../components/navigationMenu/NavigationMenu.tsx'
 import Logo from '../../components/logo/Logo.tsx'
 import Welcome from './components/Welcome.tsx'
 
@@ -31,13 +29,6 @@ const Home = () => {
           - Show latest unanswered questions in live chat
 
       */}
-
-      <div className={styles.actionBar}>
-        <ActionBar />
-      </div>
-      <div className={styles.navigationMenu}>
-        <NavigationMenu />
-      </div>
     </>
   )
 }
