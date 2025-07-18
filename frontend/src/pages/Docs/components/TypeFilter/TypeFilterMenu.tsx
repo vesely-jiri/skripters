@@ -5,7 +5,7 @@ import styles from './TypeFilterMenu.module.css'
 
 const typeFilterItems = [
     { label: 'Events', color: '#820080' },
-    { label: 'Conditions', color: '#f10000' },
+    { label: 'Conditions', color: '#c00000' },
     { label: 'Effects', color: '#0028b7' },
     { label: 'Expressions', color: '#00a108' },
     { label: 'Types', color: '#b77700' },

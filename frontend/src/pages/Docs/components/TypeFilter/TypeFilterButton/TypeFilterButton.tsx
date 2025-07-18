@@ -14,7 +14,7 @@ export default function TypeFilterButton({ label, color, onClick, active }: Prop
       onClick={onClick}
       style={{
         borderBottomColor: color,
-        backgroundColor: active ? color + '33' : 'transparent'
+        backgroundColor: active ? color + '50' : 'transparent'
 }}
     >
       <span className={styles.label}>{label}</span>
