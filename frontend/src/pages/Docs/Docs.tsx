@@ -1,9 +1,13 @@
-import TypeFilterMenu from './components/TypeFilter/TypeFilterMenu'
-import Logo from '../../components/logo/Logo'
+import TypeFilterMenu from './components/TypeFilter/TypeFilterMenu';
+import Logo from '../../components/logo/Logo';
+import TileContainer from './components/TileContainer/TileContainer';
+import { useTiles } from '../../hooks/useTiles';
 
-import styles from './Docs.module.css'
+import styles from './Docs.module.css';
 
 const Docs = () => {
+    const { tiles, selectedTile, selectTile } = useTiles();
+
     return (
         <>
             <div className={styles.TypeFilterMenu}>
@@ -11,10 +15,21 @@ const Docs = () => {
             </div>
 
             <div className={styles.logo}>
-                <Logo subtitle='Docs'/>
+                <Logo subtitle="Docs" />
             </div>
-        </>
-    )
-}
 
-export default Docs
+            <div className={styles.searchBar}>
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <div className={styles.TileContainer}>
+                <TileContainer tiles={tiles} onSelect={selectTile} />
+            </div>
+
+            {/* Zde později např. modal nebo panel */}
+            {/* {selectedTile && <TileDetailModal tile={selectedTile} onClose={() => ...} />} */}
+        </>
+    );
+};
+
+export default Docs;
