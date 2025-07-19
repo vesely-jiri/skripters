@@ -29,6 +29,7 @@ case "$COMMAND" in
 esac
 
 ENVIRONMENT="development"
+ARGS=()
 
 for arg in "$@"; do
     case "$arg" in
@@ -40,6 +41,7 @@ for arg in "$@"; do
             exit 0
             ;;
         --volumes|--build)
+            ARGS+=("$arg")
             ;;
         *)
             log::fatal "Unknown argument: $arg"
@@ -49,6 +51,6 @@ done
 
 case "$COMMAND" in
     init|start|stop|restart|logs|status|migrate|reset-db|help|version)
-        cmd::"$COMMAND" "$ENVIRONMENT" "$@"
+        cmd::"$COMMAND" "$ENVIRONMENT" "${ARGS[@]}"
         ;;
 esac
