@@ -2,6 +2,7 @@ services:
 
 #-------- frontend service---------------------------------------------
   frontend:
+    container_name: Frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -10,6 +11,7 @@ services:
 
 #--------Internal communication---------------------------------------------
   rabbitmq:
+    container_name: RabbitMQ
     image: rabbitmq:3-management
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
@@ -22,7 +24,12 @@ services:
 
 volumes:
   db-auth-data:
+  db-docs-data:
 
 networks:
   internal:
+    driver: bridge
+  db-auth:
+    driver: bridge
+  db-docs:
     driver: bridge

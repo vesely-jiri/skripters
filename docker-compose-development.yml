@@ -31,3 +31,26 @@ services:
       - .env.development
     volumes:
       - ./services/skripters-auth:/app
+
+  skripters-docs:
+    build:
+      target: development
+    environment:
+      SPRING_PROFILES_ACTIVE: development
+    env_file:
+      - .env.development
+    volumes:
+      - ./services/skripters-docs:/app
+
+
+#-------- databases---------------------------------------------
+  db-auth:
+    ports:
+      - 5432:5432
+    volumes:
+      - db-auth-data:/var/lib/postgresql/data
+  db-docs:
+    ports:
+      - 5433:5432
+    volumes:
+      - db-docs-data:/var/lib/postgresql/data
