@@ -4,10 +4,3 @@ spring:
       enabled: true
     live-reload:
       enabled: true
-  cloud:
-    gateway:
-      routes:
-        - id: auth-service
-          uri: "http://skripters-auth:8080"
-          predicates:
-            - Path=/auth/**
