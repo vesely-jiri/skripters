@@ -6,10 +6,10 @@ spring:
       enabled: true
 
   datasource:
-    url: jdbc:postgresql://db-auth:5432/${AUTH_POSTGRES_DB}
+    url: jdbc:postgresql://db-docs:5432/${DOCS_POSTGRES_DB}
     driver-class-name: org.postgresql.Driver
-    username: ${AUTH_POSTGRES_USER}
-    password: ${AUTH_POSTGRES_PASSWORD}
+    username: ${DOCS_POSTGRES_USER}
+    password: ${DOCS_POSTGRES_PASSWORD}
 
   jpa:
     hibernate:
