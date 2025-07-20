@@ -6,7 +6,8 @@ import { useTiles } from '../../hooks/useTiles';
 import styles from './Docs.module.css';
 
 const Docs = () => {
-    const { tiles, selectedTile, selectTile } = useTiles();
+    //TODO: add selectedTile
+    const { tiles, selectTile } = useTiles();
 
     return (
         <>

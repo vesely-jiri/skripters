@@ -4,7 +4,9 @@ import styles from './ActionBar.module.css'
 const ActionBar = () => {
     return(
         <>
-            <div>Action bar</div>
+            <div className={styles.container}>
+                <div>Action bar</div>
+            </div>
         </>
     )
 }
