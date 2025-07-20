@@ -16,16 +16,38 @@ public class DocsPersistenceAdapter implements LoadAllDocsBasicsPort {
     }
 
     @Override
-    public List<Documentation> loadAllDocsBasics() {
+    public List<Documentation> loadAllNodes() {
         return repository.findAll().stream()
                 .map(entity -> new Documentation(
                         entity.getId(),
                         entity.getType(),
                         entity.getTitle(),
                         entity.getDescription(),
-                        entity.getAddon()
+                        entity.getAddon(),
+                        entity.getAddonVersion(),
+                        entity.getSyntaxes(),
+                        entity.getEventValues(),
+                        entity.getUsableIn(),
+                        entity.getSince()
                 ))
                 .toList();
+    }
+
+    @Override
+    public Documentation loadNode(int id) {
+        return repository.findById(id)
+                .map(entity -> new Documentation(
+                        entity.getId(),
+                        entity.getType(),
+                        entity.getTitle(),
+                        entity.getDescription(),
+                        entity.getAddon(),
+                        entity.getAddonVersion(),
+                        entity.getSyntaxes(),
+                        entity.getEventValues(),
+                        entity.getUsableIn(),
+                        entity.getSince()
+                )).orElse(null);
     }
 
 }

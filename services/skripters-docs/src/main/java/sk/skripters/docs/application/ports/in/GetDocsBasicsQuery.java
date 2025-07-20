@@ -1,9 +1,10 @@
 package sk.skripters.docs.application.ports.in;
 
-import sk.skripters.docs.adapters.in.rest.dto.DocsBasicDto;
+import sk.skripters.docs.domain.Documentation;
 
 import java.util.List;
 
 public interface GetDocsBasicsQuery {
-    List<DocsBasicDto> geAll();
+    List<Documentation> getAllNodes();
+    Documentation getNode(int id);
 }

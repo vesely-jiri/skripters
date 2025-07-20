@@ -1,6 +1,6 @@
 package sk.skripters.docs.adapters.in.rest.dto;
 
-public record DocsDetailDto(
+public record DocsDetailDto (
         int id,
         String type,
         String title,
