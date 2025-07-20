@@ -4,7 +4,7 @@ import sk.skripters.docs.domain.Documentation;
 
 import java.util.List;
 
-public interface LoadAllDocsBasicsPort {
-    List<Documentation> loadAllNodes();
-    Documentation loadNode(int id);
+public interface LoadNodesPort {
+    List<Documentation> findAll();
+    Documentation findById(int id);
 }

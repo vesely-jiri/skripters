@@ -2,7 +2,7 @@ package sk.skripters.docs.application.service;
 
 import org.springframework.stereotype.Service;
 import sk.skripters.docs.application.ports.in.GetDocsBasicsQuery;
-import sk.skripters.docs.application.ports.out.LoadAllDocsBasicsPort;
+import sk.skripters.docs.application.ports.out.LoadNodesPort;
 import sk.skripters.docs.domain.Documentation;
 
 import java.util.List;
@@ -10,15 +10,15 @@ import java.util.List;
 @Service
 public class GetBasicDocsService implements GetDocsBasicsQuery {
 
-    private final LoadAllDocsBasicsPort loadPort;
+    private final LoadNodesPort loadPort;
 
-    public GetBasicDocsService(LoadAllDocsBasicsPort loadPort) {
+    public GetBasicDocsService(LoadNodesPort loadPort) {
         this.loadPort = loadPort;
     }
 
     @Override
     public List<Documentation> getAllNodes() {
-        return loadPort.loadAllNodes().stream()
+        return loadPort.findAll().stream()
                 .map(doc -> new Documentation(
                         doc.getId(),
                         doc.getType(),
@@ -35,9 +35,6 @@ public class GetBasicDocsService implements GetDocsBasicsQuery {
 
     @Override
     public Documentation getNode(int id) {
-        return loadPort.loadAllNodes().stream()
-                .filter(doc -> doc.getId() == id)
-                .findFirst()
-                .orElse(null);
+        return loadPort.findById(id);
     }
 }

@@ -18,23 +18,26 @@ import java.util.List;
 public class DocsController {
 
     private final GetBasicDocsService service;
+    private final DocsDetailDtoMapper detailDtoMapper;
+    private final DocsBasicDtoMapper basicDtoMapper;
 
-    public DocsController(GetBasicDocsService service) {
+    public DocsController(GetBasicDocsService service, DocsDetailDtoMapper detailDtoMapper, DocsBasicDtoMapper basicDtoMapper) {
         this.service = service;
+        this.detailDtoMapper = detailDtoMapper;
+        this.basicDtoMapper = basicDtoMapper;
     }
 
     @GetMapping
     public ResponseEntity<List<DocsBasicDto>> getAllNodes() {
         return ResponseEntity.ok(
                 service.getAllNodes().stream()
-                        .map(Dto -> new DocsBasicDtoMapper()
-                                .toBasicDto(Dto)).toList());
+                        .map(basicDtoMapper::toBasicDto).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DocsDetailDto> getNode (@RequestParam int id) {
         return ResponseEntity.ok(
-                new DocsDetailDtoMapper().toDetailDto(
+                detailDtoMapper.toDetailDto(
                         service.getNode(id)));
     }
 }
