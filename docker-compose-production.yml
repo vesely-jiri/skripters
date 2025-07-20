@@ -25,3 +25,11 @@ services:
       - SPRING_PROFILES_ACTIVE=production
     env_file:
       - .env.production
+
+  skripters-docs:
+    build:
+      target: production
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
+    env_file:
+      - .env.production
