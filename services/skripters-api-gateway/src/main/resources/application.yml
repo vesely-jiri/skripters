@@ -7,11 +7,11 @@ spring:
     gateway:
       routes:
         - id: auth-service
-          uri: "http://skripters-auth-service:8080"
+          uri: "http://skripters-auth:8080"
           predicates:
             - Path=/auth/**
 
         - id: docs-service
-          uri: "http://skripters-docs-service:8080"
+          uri: "http://skripters-docs:8080"
           predicates:
             - Path=/tiles/**
