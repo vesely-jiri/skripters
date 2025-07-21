@@ -1,11 +1,18 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${AUTH_POSTGRES_HOST}:${AUTH_POSTGRES_PORT}/${AUTH_POSTGRES_DB}
+    url: jdbc:postgresql://db-auth:5432/${AUTH_POSTGRES_DB}
     driver-class-name: org.postgresql.Driver
     username: ${AUTH_POSTGRES_USER}
     password: ${AUTH_POSTGRES_PASSWORD}
 
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 600000
+      connection-timeout: 30000
+      leak-detection-threshold: 2000
+
+
+
   jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
+    open-in-view: false
