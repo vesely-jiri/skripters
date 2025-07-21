@@ -14,4 +14,4 @@ spring:
         - id: docs-service
           uri: "http://skripters-docs:8080"
           predicates:
-            - Path=/tiles/**
+            - Path=/docs/**
