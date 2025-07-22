@@ -13,11 +13,9 @@ on:
       - main
       - develop
 
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         service: [frontend, services/skripters-api-gateway, services/skripters-auth, services/skripters-docs ]
@@ -26,11 +24,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-    - name: Build ${{ matrix.service }}
-      working-directory: ./${{ matrix.service }}
-      run: mvn clean verify -B
+    - name: Set up environment and build
+      run: |
+        if [[ "${{ matrix.service }}" == "frontend" ]]; then
+          echo "Building frontend with Node.js"
+          cd frontend
+          npm install
+          npm run build
+          npm test
+        else
+          echo "Building Java service ${{ matrix.service }}"
+          cd ${{ matrix.service }}
+          mvn clean verify -B
+        fi

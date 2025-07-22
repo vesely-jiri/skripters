@@ -12,7 +12,9 @@ jobs:
 
     strategy:
       matrix:
-        service: [frontend, services/skripters-api-gateway, services/skripters-auth, services/skripters-docs ]
+        service: [frontend, skripters-api-gateway, skripters-auth, skripters-docs]
+        context-path: ['./frontend', './services/skripters-api-gateway', './services/skripters-auth', './services/skripters-docs']
+        target-stage: ['production', 'production', 'production', 'production']
 
     steps:
     - name: Checkout code
@@ -29,5 +31,8 @@ jobs:
 
     - name: Build and push image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:latest ./backend/${{ matrix.service }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:latest
+        docker build \
+          --target ${{ matrix.target-stage }} \
+          -t ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:latest \
+          ${{ matrix.context-path }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:latest
