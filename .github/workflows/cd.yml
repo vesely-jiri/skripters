@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        service: [frontend, services/api-gateway, services/auth, services/docs ]
+        service: [frontend, services/skripters-api-gateway, services/skripters-auth, services/skripters-docs ]
 
     steps:
     - name: Checkout code
