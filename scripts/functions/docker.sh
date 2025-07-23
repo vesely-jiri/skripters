@@ -30,6 +30,7 @@ docker::init() {
     docker::_validate_env "$env"
 
     eval "cmd=($(docker::get_compose_command "$env"))"
+    [[ "$env" == "production" ]] && cmd+=("pull")
     cmd+=("build")
 
     if ! "${cmd[@]}"; then
