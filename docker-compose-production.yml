@@ -2,33 +2,27 @@ services:
 
   #-------- frontend services---------------------------------------------
   frontend:
-    build:
-      args:
-        NODE_ENV: production
-      target: production
+    image: jurajplayercze/frontend:latest
     ports:
       - "80:80"
 
   #-------- backend services---------------------------------------------
   skripters-api-gateway:
-    build:
-      target: production
+    image: jurajplayercze/skripters-api-gateway:latest
     environment:
       - SPRING_PROFILES_ACTIVE=production
     env_file:
       - .env.production
 
   skripters-auth:
-    build:
-      target: production
+    image: jurajplayercze/skripters-auth:latest
     environment:
       - SPRING_PROFILES_ACTIVE=production
     env_file:
       - .env.production
 
   skripters-docs:
-    build:
-      target: production
+    image: jurajplayercze/skripters-docs:latest
     environment:
       - SPRING_PROFILES_ACTIVE=production
     env_file:

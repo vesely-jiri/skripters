@@ -2,6 +2,8 @@ services:
 #-------- frontend services---------------------------------------------
   frontend:
     build:
+      context: ./frontend
+      dockerfile: Dockerfile
       args:
         NODE_ENV: development
       target: development
@@ -14,6 +16,8 @@ services:
 #-------- backend services---------------------------------------------
   skripters-api-gateway:
     build:
+      context: ./services/skripters-api-gateway
+      dockerfile: Dockerfile
       target: development
     environment:
       SPRING_PROFILES_ACTIVE: development
@@ -24,6 +28,8 @@ services:
 
   skripters-auth:
     build:
+      context: ./services/skripters-auth
+      dockerfile: Dockerfile
       target: development
     environment:
       SPRING_PROFILES_ACTIVE: development
@@ -36,6 +42,8 @@ services:
 
   skripters-docs:
     build:
+      context: ./services/skripters-docs
+      dockerfile: Dockerfile
       target: development
     environment:
       SPRING_PROFILES_ACTIVE: development

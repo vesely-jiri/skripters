@@ -4,9 +4,6 @@ services:
 
   skripters-api-gateway:
     container_name: skripters-api-gateway-service
-    build:
-      context: ./services/skripters-api-gateway
-      dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
     ports:
@@ -19,9 +16,6 @@ services:
 
   skripters-auth:
     container_name: skripters-auth-service
-    build:
-      context: ./services/skripters-auth
-      dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
     depends_on:
@@ -33,9 +27,6 @@ services:
 
   skripters-docs:
     container_name: skripters-docs-service
-    build:
-      context: ./services/skripters-docs
-      dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-development}
     depends_on:

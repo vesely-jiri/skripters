@@ -3,9 +3,6 @@ services:
 #-------- frontend service---------------------------------------------
   frontend:
     container_name: Frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
     networks:
       - internal
 
