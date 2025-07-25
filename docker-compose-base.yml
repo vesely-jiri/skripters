@@ -1,0 +1,32 @@
+services:
+
+#-------- frontend service---------------------------------------------
+  frontend:
+    container_name: Frontend
+    networks:
+      - internal
+
+#--------Internal communication---------------------------------------------
+  rabbitmq:
+    container_name: RabbitMQ
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - ${RABBITMQ_PORT}:${RABBITMQ_PORT}
+      - "15672:15672"
+    networks:
+      - internal
+
+volumes:
+  db-auth-data:
+  db-docs-data:
+
+networks:
+  internal:
+    driver: bridge
+  db-auth:
+    driver: bridge
+  db-docs:
+    driver: bridge

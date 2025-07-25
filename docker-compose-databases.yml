@@ -1,0 +1,20 @@
+services:
+  db-auth:
+    container_name: db-auth
+    image: postgres
+    environment:
+      POSTGRES_USER: ${AUTH_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${AUTH_POSTGRES_DB}
+    networks:
+      - db-auth
+
+  db-docs:
+    container_name: db-docs
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DOCS_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DOCS_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DOCS_POSTGRES_DB}
+    networks:
+      - db-docs
